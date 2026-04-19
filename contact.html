@@ -234,38 +234,41 @@ footer{background:var(--burg);position:relative;z-index:1}
           <p class="form-card-sub">Free, no-obligation. 30 minutes. We'll understand your situation and tell you honestly what we see.</p>
 
           <form id="contact-form">
+            <input type="hidden" name="access_key" value="2d6c3559-1be3-47e0-bf9e-de18649784b3">
+            <input type="hidden" name="subject" value="New Inquiry from OPNIGMA Website">
+            <input type="hidden" name="from_name" value="OPNIGMA Website">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">First Name</label>
-                <input type="text" class="form-input" id="firstName" placeholder="John">
+                <input type="text" class="form-input" id="firstName" name="first_name" placeholder="John">
                 <span class="form-error-msg" id="firstName-err">Required</span>
               </div>
               <div class="form-group">
                 <label class="form-label">Last Name</label>
-                <input type="text" class="form-input" id="lastName" placeholder="Smith">
+                <input type="text" class="form-input" id="lastName" name="last_name" placeholder="Smith">
                 <span class="form-error-msg" id="lastName-err">Required</span>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-input" id="email" placeholder="you@company.com">
+                <input type="email" class="form-input" id="email" name="email" placeholder="you@company.com">
                 <span class="form-error-msg" id="email-err">Valid email required</span>
               </div>
               <div class="form-group">
                 <label class="form-label">Phone (optional)</label>
-                <input type="tel" class="form-input" id="phone" placeholder="+1 (416) 555-0100">
+                <input type="tel" class="form-input" id="phone" name="phone" placeholder="+1 (416) 555-0100">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">Company</label>
-                <input type="text" class="form-input" id="company" placeholder="Your company">
+                <input type="text" class="form-input" id="company" name="company" placeholder="Your company">
                 <span class="form-error-msg" id="company-err">Required</span>
               </div>
               <div class="form-group">
                 <label class="form-label">Sector</label>
-                <select class="form-select" id="sector">
+                <select class="form-select" id="sector" name="sector">
                   <option value="" disabled selected>Select sector</option>
                   <option>Freight Carrier (FTL / LTL)</option>
                   <option>Third-Party Logistics (3PL)</option>
@@ -282,7 +285,7 @@ footer{background:var(--burg);position:relative;z-index:1}
             <div class="form-row">
               <div class="form-group full">
                 <label class="form-label">Tell us about your situation</label>
-                <textarea class="form-textarea" id="message" placeholder="What's working, what isn't, and what you need help with..."></textarea>
+                <textarea class="form-textarea" id="message" name="message" placeholder="What's working, what isn't, and what you need help with..."></textarea>
                 <span class="form-error-msg" id="message-err">Please describe your situation</span>
               </div>
             </div>
@@ -425,10 +428,18 @@ document.getElementById('contact-form').addEventListener('submit',function(e){
   if(!valid)return;
   const btn=this.querySelector('button[type=submit]');
   btn.textContent='Sending…';btn.disabled=true;
-  setTimeout(()=>{
-    document.getElementById('contact-form').style.display='none';
-    document.getElementById('form-success').classList.add('visible');
-  },1200);
+  const formData=new FormData(this);
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:formData})
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.success){
+        document.getElementById('contact-form').style.display='none';
+        document.getElementById('form-success').classList.add('visible');
+      }else{
+        btn.textContent='Something went wrong. Try again.';btn.disabled=false;
+      }
+    })
+    .catch(()=>{btn.textContent='Connection error. Try again.';btn.disabled=false});
 });
 
   // Hamburger menu
