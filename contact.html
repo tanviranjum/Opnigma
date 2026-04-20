@@ -11,7 +11,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:170px}
-:root{--beige:#F0F2D5;--beige-alt:#F6F7E3;--burg:#6C001B;--burg-60:rgba(108,0,27,.6);--burg-40:rgba(108,0,27,.4);--border:rgba(108,0,27,0.15);--divider:rgba(108,0,27,0.18);--card:#F6F7E3;--shadow:0 2px 28px rgba(108,0,27,.07);--error:#C0392B}
+:root{--beige:#F0F2D5;--beige-alt:#F6F7E3;--burg:#6C001B;--burg-60:rgba(108,0,27,.72);--burg-40:rgba(108,0,27,.5);--border:rgba(108,0,27,0.15);--divider:rgba(108,0,27,0.18);--card:#F6F7E3;--shadow:0 2px 28px rgba(108,0,27,.07);--error:#C0392B}
 body{background:var(--beige);color:var(--burg);font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
 h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:-.03em;line-height:1.08;color:var(--burg)}
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
@@ -122,13 +122,13 @@ footer{background:var(--burg);position:relative;z-index:1}
 .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid rgba(240,242,213,.15);margin-bottom:28px}
 .footer-logo-wrap{background:rgba(240,242,213,.92);padding:5px 12px;border-radius:4px;display:inline-block;margin-bottom:20px}
 .footer-logo-wrap img{height:72px;width:auto;display:block}
-.footer-brand-text{font-size:13px;color:rgba(240,242,213,.55);line-height:1.7;max-width:240px}
+.footer-brand-text{font-size:13px;color:rgba(240,242,213,.7);line-height:1.7;max-width:240px}
 .footer-col-head{font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,242,213,.45);margin-bottom:20px}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
 .footer-links a{color:rgba(240,242,213,.6);text-decoration:none;font-size:14px;transition:color .2s}
 .footer-links a:hover{color:var(--beige)}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between}
-.footer-copy{font-family:'Inter',sans-serif;font-size:11px;color:rgba(240,242,213,.32);letter-spacing:.05em}
+.footer-copy{font-family:'Inter',sans-serif;font-size:11px;color:rgba(240,242,213,.55);letter-spacing:.05em}
 
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease}
 .reveal.from-left{transform:translateX(-32px)}
@@ -185,6 +185,7 @@ footer{background:var(--burg);position:relative;z-index:1}
 <nav id="main-nav">
   <a href="index.html" class="nav-logo"><img src="logo/Red 2.png" alt="OPNIGMA"></a>
   <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
     <li><a href="index.html#services">Services</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="approach.html">Approach</a></li>
@@ -239,37 +240,38 @@ footer{background:var(--burg);position:relative;z-index:1}
             <input type="hidden" name="access_key" value="2d6c3559-1be3-47e0-bf9e-de18649784b3">
             <input type="hidden" name="subject" value="New Inquiry from OPNIGMA Website">
             <input type="hidden" name="from_name" value="OPNIGMA Website">
+            <input type="checkbox" name="botcheck" style="display:none">
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">First Name</label>
+                <label class="form-label" for="firstName">First Name</label>
                 <input type="text" class="form-input" id="firstName" name="first_name" placeholder="John">
                 <span class="form-error-msg" id="firstName-err">Required</span>
               </div>
               <div class="form-group">
-                <label class="form-label">Last Name</label>
+                <label class="form-label" for="lastName">Last Name</label>
                 <input type="text" class="form-input" id="lastName" name="last_name" placeholder="Smith">
                 <span class="form-error-msg" id="lastName-err">Required</span>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Email</label>
+                <label class="form-label" for="email">Email</label>
                 <input type="email" class="form-input" id="email" name="email" placeholder="you@company.com">
                 <span class="form-error-msg" id="email-err">Valid email required</span>
               </div>
               <div class="form-group">
-                <label class="form-label">Phone (optional)</label>
+                <label class="form-label" for="phone">Phone (optional)</label>
                 <input type="tel" class="form-input" id="phone" name="phone" placeholder="+1 (416) 555-0100">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Company</label>
+                <label class="form-label" for="company">Company</label>
                 <input type="text" class="form-input" id="company" name="company" placeholder="Your company">
                 <span class="form-error-msg" id="company-err">Required</span>
               </div>
               <div class="form-group">
-                <label class="form-label">Sector</label>
+                <label class="form-label" for="sector">Sector</label>
                 <select class="form-select" id="sector" name="sector">
                   <option value="" disabled selected>Select sector</option>
                   <option>Freight Carrier (FTL / LTL)</option>
@@ -286,14 +288,14 @@ footer{background:var(--burg);position:relative;z-index:1}
             </div>
             <div class="form-row">
               <div class="form-group full">
-                <label class="form-label">Tell us about your situation</label>
+                <label class="form-label" for="message">Tell us about your situation</label>
                 <textarea class="form-textarea" id="message" name="message" placeholder="What's working, what isn't, and what you need help with..."></textarea>
                 <span class="form-error-msg" id="message-err">Please describe your situation</span>
               </div>
             </div>
 
             <div class="form-check-group">
-              <div class="form-checkbox" id="consent-box"></div>
+              <div class="form-checkbox" id="consent-box" role="checkbox" aria-checked="false" tabindex="0"></div>
               <label class="form-check-label" id="consent-label">I understand OPNIGMA will use this information to respond to my inquiry and may follow up by email or phone.</label>
             </div>
             <span class="form-error-msg" id="consent-err" style="display:none;margin-bottom:16px">Please confirm to continue</span>
@@ -399,9 +401,10 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 let consentChecked=false;
 const consentBox=document.getElementById('consent-box');
 const consentLabel=document.getElementById('consent-label');
-function toggleConsent(){consentChecked=!consentChecked;consentBox.classList.toggle('checked',consentChecked)}
+function toggleConsent(){consentChecked=!consentChecked;consentBox.classList.toggle('checked',consentChecked);consentBox.setAttribute('aria-checked',consentChecked)}
 consentBox.addEventListener('click',toggleConsent);
 consentLabel.addEventListener('click',toggleConsent);
+consentBox.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();toggleConsent()}});
 
 // Form submit
 document.getElementById('contact-form').addEventListener('submit',function(e){
